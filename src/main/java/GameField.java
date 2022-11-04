@@ -21,7 +21,7 @@ public class GameField extends JPanel {
 
     private boolean inGame = true;
 
-    public void loadImage(){
+    public void loadImage() {
         ImageIcon iia = new ImageIcon("apple.png");
         apple = iia.getImage();
         ImageIcon iid = new ImageIcon("dot.png");
@@ -36,22 +36,24 @@ public class GameField extends JPanel {
         }
     }
 
-    public void initGame(){
-            dots = 3;
+    public void initGame() {
+        dots = 3;
         for (int i = 0; i < dots; i++) {
             y[i] = 48;
-            x[i] = 48 - i*DOT_SIZE;
+            x[i] = 48 - i * DOT_SIZE;
         }
         timer = new Timer(150, this);
         timer.start();
     }
 
-    public void checkApple(){
-        for (int i = 0; i < 3; i++) {
-            if (x[0] == appleX && y[0] == appleY) {
-                dots++;
-            }
+    public void checkApple() {
+        int count = 0;
+        while (count<3){
+        if (x[0] == appleX && y[0] == appleY) {
+            dots++;
+            count++;
         }
-        createApple();
+            createApple();
+        }
     }
 }
