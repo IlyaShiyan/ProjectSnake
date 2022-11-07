@@ -41,19 +41,12 @@ public class GameField extends JPanel implements ActionListener {
         dot = iid.getImage();
     }
 
-    public void createApple1() {
+    public void createApple() {
         Random random = new Random();
-            appleX = random.nextInt(20) * DOT_SIZE;
-            appleY = random.nextInt(20) * DOT_SIZE;
-    }
-
-    public void createApple2() {
-        Random random = new Random();
+        appleX = random.nextInt(20) * DOT_SIZE;
+        appleY = random.nextInt(20) * DOT_SIZE;
         appleX1 = random.nextInt(20) * DOT_SIZE;
         appleY1 = random.nextInt(20) * DOT_SIZE;
-    }
-    public void createApple3() {
-        Random random = new Random();
         appleX2 = random.nextInt(20) * DOT_SIZE;
         appleY2 = random.nextInt(20) * DOT_SIZE;
     }
@@ -66,24 +59,25 @@ public class GameField extends JPanel implements ActionListener {
         }
         timer = new Timer(150, this);
         timer.start();
-        createApple1();
-        createApple2();
-        createApple3();
+        createApple();
     }
 
     public void checkApple() {
+        int count = 3;
         if (x[0] == appleX && y[0] == appleY) {
-                dots++;
-            createApple1();
+            dots++;
+            count --;
         }
         if (x[0] == appleX1 && y[0] == appleY1) {
             dots++;
-            createApple2();
+            count--;
         }
         if (x[0] == appleX2 && y[0] == appleY2) {
             dots++;
-            createApple3();
+            count--;
         }
+        if (count==0)
+            createApple();
     }
 
     @Override
