@@ -34,6 +34,8 @@ public class GameField extends JPanel implements ActionListener {
 
     private boolean inGame = true;
 
+    private int count = 0;
+
     public void loadImage() {
         ImageIcon iia = new ImageIcon("apple.png");
         apple = iia.getImage();
@@ -43,6 +45,7 @@ public class GameField extends JPanel implements ActionListener {
 
     public void createApple() {
         Random random = new Random();
+        count = 3;
         appleX = random.nextInt(20) * DOT_SIZE;
         appleY = random.nextInt(20) * DOT_SIZE;
         appleX1 = random.nextInt(20) * DOT_SIZE;
@@ -63,20 +66,25 @@ public class GameField extends JPanel implements ActionListener {
     }
 
     public void checkApple() {
-        int count = 3;
         if (x[0] == appleX && y[0] == appleY) {
             dots++;
-            count --;
+            count--;
+            appleX=-16;
+            appleY=-16;
         }
         if (x[0] == appleX1 && y[0] == appleY1) {
             dots++;
             count--;
+            appleX1=-16;
+            appleY1=-16;
         }
         if (x[0] == appleX2 && y[0] == appleY2) {
             dots++;
             count--;
+            appleX2=-16;
+            appleY2=-16;
         }
-        if (count==0)
+        if (count<=0)
             createApple();
     }
 
